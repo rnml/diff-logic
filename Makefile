@@ -10,7 +10,7 @@ MODULES= \
   std \
 
 B=diff_logic
-T=$B.cmxa
+T=$B.cmxa std.exe
 FOR_PACK_OPT=-for-pack Diff_logic
 
 ### RULES ##########################################################

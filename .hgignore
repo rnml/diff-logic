@@ -1,0 +1,19 @@
+syntax: glob
+
+# editor droppings
+.\#*
+*~
+.*.swp
+
+# hg droppings
+*.orig
+
+# build artifacts
+*.a
+*.cmi
+*.cmo
+*.cmx
+*.cmxa
+*.exe
+*.o
+.depend
