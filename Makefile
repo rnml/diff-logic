@@ -10,7 +10,8 @@ MODULES= \
   std \
 
 B=diff_logic
-T=$B.cmxa std.exe
+T=$B.cmxa
+TESTS=std.exe
 FOR_PACK_OPT=-for-pack Diff_logic
 
 ### RULES ##########################################################
@@ -36,8 +37,11 @@ OCAMLLEX=ocamlfind ocamllex -q
 
 LIB_FILES=$(addsuffix .cmxa, $(LIBRARIES))
 
-all: init $T
+all: init $T $(TESTS)
 	@echo done
+
+runtests: $(TESTS)
+	./$(TESTS) inline-test-runner dummy
 
 init:
 	eval `opam config -env`
