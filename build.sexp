@@ -1,6 +1,6 @@
-((target    (Lib diff-logic))
+((target    (Lib diff_logic))
  (packages  (core async))
  (includes  ())
  (libraries ())
  (syntax    (sexplib pa_ounit))
- (modules   (main)))
+ (modules   (solver std)))
