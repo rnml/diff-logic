@@ -27,7 +27,12 @@ ifdef SYNTAX
   endif
 endif
 
-OCAMLOPT_FLAGS=$(FIND_OPTS) -thread -linkpkg -w YSPUZF -warn-error YSPUZ
+OCAMLOPT_FLAGS=\
+  $(FIND_OPTS) \
+  -thread \
+  -linkpkg \
+  -w +Y+S+P+U+Z+F-40-41-42 \
+  -warn-error +Y+S+P+U+Z-40-41-42
 
 OCAMLC=ocamlfind ocamlc $(INCLUDES)
 OCAMLOPT=ocamlfind ocamlopt $(INCLUDES)
@@ -37,14 +42,14 @@ OCAMLLEX=ocamlfind ocamllex -q
 
 LIB_FILES=$(addsuffix .cmxa, $(LIBRARIES))
 
-all: init $T $(TESTS)
+all: init $T
 	@echo done
-
-runtests: $(TESTS)
-	./$(TESTS) inline-test-runner dummy
 
 init:
 	eval `opam config -env`
+
+runtests: $(TESTS)
+	./$(TESTS) inline-test-runner dummy
 
 OBJECTS=$(addsuffix .cmx, $(MODULES))
 SYNTAX_EXT_PACKAGES=$(addsuffix .syntax, $(SYNTAX_EXTS))
@@ -95,4 +100,3 @@ clean:
 	rm -rf .depend *.o *.a *.cmi *.cmo *.cma *.cmx *.cmxa *.exe
 
 include .depend
-
